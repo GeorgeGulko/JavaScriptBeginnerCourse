@@ -10,19 +10,20 @@ var usersData = [
 
 function getFieldValues (data, field) {
 	var tmp;
+	var result = [];
 	for (var i = 0; i < 3; i++) {
 		for (var j = i+1; j < 4; j++) {
-			if (usersData[i][field] > usersData[j][field]) {
-				tmp = usersData[i][field];
-				usersData[i][field] = usersData[j][field];
-				usersData[j][field] = tmp;  
+			if (data[i][field] > data[j][field]) {
+				tmp = data[i][field];
+				data[i][field] = data[j][field];
+				data[j][field] = tmp;  
 			}
 		}
 	}
-
 	for (i = 0; i < 4; i++) {
-		console.log(usersData[i][field]); 
+		result.push(data[i][field]);
 	}
+	return result;
 }
 console.log(getFieldValues(usersData, 'user'));
 
@@ -32,11 +33,13 @@ console.log(getFieldValues(usersData, 'user'));
 var numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
 
 function filter (num, func) {
+	var array = [];
 	for (var i = 0; i < 9; i++) {
 		if (func(num[i])) {
-			console.log(num[i])
+			array.push(num[i]);
 		}
 	}
+	return array;
 }
 function isEven(x) {return x % 2 == 0}
 console.log(filter(numbers, isEven));
@@ -76,6 +79,6 @@ function makeItClean(mess_array) {
 			}
 		}
 	}
-	console.log(arr);
+	return(arr);
 }
 console.log(makeItClean(totalMessArray));
